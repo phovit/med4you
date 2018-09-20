@@ -9,12 +9,12 @@ app.controller('medicalprescriptioncontroller', function ($scope, $http) {
     $scope.getmedicalPrescriptions = function () {
         $http({
             method: 'GET',
-            url: '/med4you/users/logged'
+            url: '/users/logged'
         }).then(function (response) {
             $scope.user = response.data;
             $http({
                 method: 'GET',
-                url: '/med4you/medicalPrescriptions/findByUserId/' + $scope.user.id
+                url: '/medicalPrescriptions/findByUserId/' + $scope.user.id
             }).then(function (response) {
                 $scope.medicalPrescriptions = response.data;
             });
@@ -25,7 +25,7 @@ app.controller('medicalprescriptioncontroller', function ($scope, $http) {
     $scope.delete = function (id) {
         $http({
             method: 'DELETE',
-            url: '/med4you/medicalPrescriptions/' + id
+            url: '/medicalPrescriptions/' + id
         }).then(function (response) {
             $scope.medicalPrescriptions = response.data;
         });
@@ -64,7 +64,7 @@ app.controller('medicalprescriptioncontroller', function ($scope, $http) {
             console.log(medicalPrescription.firstDose);
             $http({
                 method: method,
-                url: '/med4you/medicalPrescriptions',
+                url: '/medicalPrescriptions',
                 data: medicalPrescription
             }).then(function (response) {
                 $scope.getmedicalPrescriptions();
@@ -97,7 +97,7 @@ app.controller('medicalprescriptioncontroller', function ($scope, $http) {
         if ($scope.medicineSearch.length >= 3) {
             $http({
                 method: 'GET',
-                url: '/med4you/medicine/findByName/' + $scope.medicineSearch
+                url: '/medicine/findByName/' + $scope.medicineSearch
             }).then(function (response) {
                 $scope.doctorSearchResults = response.data;
             }, function (error) {

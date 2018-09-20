@@ -8,7 +8,7 @@ app.controller('logincontroller', function ($scope, $http, $state) {
     $scope.autenticate = function () {
         $http({
             method: 'POST',
-            url: '/med4you/autenticate',
+            url: '/autenticate',
             data: $scope.user
         }).then(function (response) {
             $scope.session = response.data;

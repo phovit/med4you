@@ -12,7 +12,7 @@ app.controller('medicineregistercontroller', function ($scope, $http, $state) {
     $scope.save = function () {
         $http({
             method: 'POST',
-            url: '/med4you/medicine',
+            url: '/medicine',
             data: $scope.medicine
         }).then(function (response) {
             console.log(response);

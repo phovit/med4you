@@ -10,7 +10,7 @@ app.controller('usercontroller', function ($scope, $http) {
     $scope.getInfoUser = function () {
         $http({
             method: 'GET',
-            url: '/med4you/users/logged'
+            url: '/users/logged'
         }).then(function (response) {
             $scope.user = response.data;
             $scope.oldUser = angular.copy($scope.user);
@@ -48,7 +48,7 @@ app.controller('usercontroller', function ($scope, $http) {
 
             $http({
                 method: 'PUT',
-                url: '/med4you/users',
+                url: '/users',
                 data: $scope.user
             }).then(function (response) {
                 console.log(response);
@@ -141,7 +141,7 @@ app.controller('usercontroller', function ($scope, $http) {
     $scope.sendPhoto = function () {
         $http({
             method: 'POST',
-            url: '/med4you/files/upload',
+            url: '/files/upload',
             data: $scope.image,
             transformRequest: angular.identity,
             headers: {enctype:'multipart/form-data',

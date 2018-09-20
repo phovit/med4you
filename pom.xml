@@ -125,11 +125,13 @@
             <version>4.2.4.RELEASE</version>
         </dependency>
         <!--JWT Authenticação API-->
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+            <version>0.9.1</version>
         </dependency>
+
     </dependencies>
 
     <build>

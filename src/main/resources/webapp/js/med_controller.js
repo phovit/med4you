@@ -8,7 +8,7 @@ app.controller('medicinecontroller', function ($scope, $http) {
     $scope.listarMedicamentos = function () {
         $http({
             method: 'GET',
-            url: '/med4you/medicine'
+            url: '/medicine'
         }).then(function (response) {
             $scope.medicines = response.data;
         }, function (error) {
@@ -18,7 +18,7 @@ app.controller('medicinecontroller', function ($scope, $http) {
     $scope.save = function (object) {
         $http({
             method: 'POST',
-            url: '/med4you/medicine',
+            url: '/medicine',
             data: object
         }).then(function (response) {
             console.log(response);

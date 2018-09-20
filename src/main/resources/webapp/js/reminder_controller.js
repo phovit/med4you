@@ -9,12 +9,12 @@ app.controller('remindercontroller', function ($scope, $http) {
     $scope.getReminders = function () {
         $http({
             method: 'GET',
-            url: '/med4you/users/logged'
+            url: '/users/logged'
         }).then(function (response) {
             $scope.user = response.data;
             $http({
                 method: 'GET',
-                url: '/med4you/reminders/findByUserId/' + $scope.user.id
+                url: '/reminders/findByUserId/' + $scope.user.id
             }).then(function (response) {
                 $scope.reminders = response.data;
             });
@@ -25,7 +25,7 @@ app.controller('remindercontroller', function ($scope, $http) {
     $scope.delete = function (id) {
         $http({
             method: 'DELETE',
-            url: '/med4you/reminders/' + id
+            url: '/reminders/' + id
         }).then(function (response) {
             $scope.reminders = response.data;
         });
@@ -64,7 +64,7 @@ app.controller('remindercontroller', function ($scope, $http) {
             console.log(reminder.firstDose);
             $http({
                 method: method,
-                url: '/med4you/reminders',
+                url: '/reminders',
                 data: reminder
             }).then(function (response) {
                 $scope.getReminders();
@@ -97,7 +97,7 @@ app.controller('remindercontroller', function ($scope, $http) {
         if ($scope.medicineSearch.length >= 3) {
             $http({
                 method: 'GET',
-                url: '/med4you/medicine/findByName/' + $scope.medicineSearch
+                url: '/medicine/findByName/' + $scope.medicineSearch
             }).then(function (response) {
                 $scope.medicineSearchResults = response.data;
             }, function (error) {

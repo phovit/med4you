@@ -55,7 +55,7 @@ app.controller('indexcontroller', function ($scope, $http) {
     $scope.getIsLogged = function(){
         $http({
             method: 'GET',
-            url: '/med4you/users/isLogged'
+            url: '/users/isLogged'
         }).then(function (response) {
             $scope.isLogged = response.data;
         });
@@ -63,7 +63,7 @@ app.controller('indexcontroller', function ($scope, $http) {
     $scope.infoUser = function(){
         $http({
             method: 'GET',
-            url: '/med4you/users/logged'
+            url: '/users/logged'
         }).then(function (response) {
             $scope.loggedUser = response.data;
         });

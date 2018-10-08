@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -23,19 +22,10 @@ public class Medicine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    
-    @OneToMany
-    private List<Indication> indications;
-    
-    @OneToMany
-    private List<AgainstIndication> contraindications;
-    
-    @OneToMany
-    private List<AdverseReactions> adverseReactions;
-    
-    @OneToMany
-    private List<Precaution> precautions;
-    
+    private String indications;
+    private String contraindications;
+    private String adverseReactions;
+    private String precautions;
     private Long codebar;
     private String activeIngredients;
     private Long msRecord;
@@ -62,35 +52,35 @@ public class Medicine {
         this.id = id;
     }
 
-    public List<Indication> getIndications() {
+    public String getIndications() {
 		return indications;
 	}
 
-	public void setIndications(List<Indication> indications) {
+	public void setIndications(String indications) {
 		this.indications = indications;
 	}
 
-	public List<AgainstIndication> getContraindications() {
+	public String getContraindications() {
 		return contraindications;
 	}
 
-	public void setContraindications(List<AgainstIndication> contraindications) {
+	public void setContraindications(String contraindications) {
 		this.contraindications = contraindications;
 	}
 
-    public List<AdverseReactions> getAdverseReactions() {
+    public String getAdverseReactions() {
 		return adverseReactions;
 	}
 
-	public void setAdverseReactions(List<AdverseReactions> adverseReactions) {
+	public void setAdverseReactions(String adverseReactions) {
 		this.adverseReactions = adverseReactions;
 	}
 
-	public List<Precaution> getPrecautions() {
+	public String getPrecautions() {
 		return precautions;
 	}
 
-	public void setPrecautions(List<Precaution> precautions) {
+	public void setPrecautions(String precautions) {
 		this.precautions = precautions;
 	}
 

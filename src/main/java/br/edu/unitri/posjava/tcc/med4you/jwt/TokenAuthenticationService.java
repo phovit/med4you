@@ -4,6 +4,7 @@ package br.edu.unitri.posjava.tcc.med4you.jwt;
  * Created by pauloho on 17/09/18.
  */
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class TokenAuthenticationService {
     static final String SECRET = "MySecret";
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";
+    private HttpServletResponse response;
 
     static void addAuthentication(HttpServletResponse response, String username) {
         String JWT = Jwts.builder()
@@ -31,6 +33,13 @@ public class TokenAuthenticationService {
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
 
+        response.setStatus(HttpServletResponse.SC_OK);
+        try {
+            response.getWriter().write("{\""+HEADER_STRING+"\":\""+
+                    TOKEN_PREFIX + " " + JWT+"\"}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
     }
 

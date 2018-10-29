@@ -40,6 +40,7 @@ public class TokenAuthenticationService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        response.addHeader("Content-type", "application/json");
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
     }
 

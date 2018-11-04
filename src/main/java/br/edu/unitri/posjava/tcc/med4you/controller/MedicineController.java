@@ -65,8 +65,8 @@ public class MedicineController {
     }
 
     @RequestMapping(value = "/findByName/{name}", method = RequestMethod.GET)
-    @ApiOperation(value = "Exclusão por ID",
-            notes ="Este endpoint é responsável por realizar a exclusão de um medicamento, por seu nome ou trcho do nome",
+    @ApiOperation(value = "Busca por nome",
+            notes ="Este endpoint é responsável por realizar a busca de um medicamento, por seu nome ou trecho do nome",
             response = Medicine.class)
     public List<Medicine> findByName(@PathVariable("name") String name) {
         return service.findByName(name);

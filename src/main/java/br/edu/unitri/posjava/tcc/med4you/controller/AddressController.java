@@ -2,6 +2,10 @@ package br.edu.unitri.posjava.tcc.med4you.controller;
 
 import java.util.List;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +21,7 @@ import br.edu.unitri.posjava.tcc.med4you.service.AddressService;
  */
 @RestController
 @RequestMapping("addresses")
+@Api(value = "Endereço", description = "API REST para controle endereços", tags = { "Endereço" })
 public class AddressController {
 
 	@Autowired
@@ -28,6 +33,7 @@ public class AddressController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
+	@ApiOperation(value = "Update Address", notes ="This method uptate all info of address", response = Address.class)
 	public void update(@RequestBody Address address) {
 		service.update(address);
 	}

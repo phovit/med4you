@@ -41,6 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/login/error").permitAll()
 				.antMatchers( "/js/**", "/css/**").permitAll()
 				.antMatchers( "/index.html","/","/login").permitAll()
+
+				/**SWAGGER FILES IS FULL PERMITTED**/
+				.antMatchers( "/swagger-ui.html",
+						"/webjars/**",
+						"/swagger-resources/**",
+						"/v2/api-docs").permitAll()
+
 				.antMatchers( "/users/isLogged","/users/logged").permitAll()
 				.antMatchers( "/screens/medicine.html","/medicine", "/medicine/findByName/*","/screens/medicine_search.html").permitAll()
 				.anyRequest().authenticated()

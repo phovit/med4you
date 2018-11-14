@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/login.html",
 						"/login.css",
 						"/register",
+						"/users",
 						"/users/register",
 						"/screens/partials/css/login.css",
 						"/screens/partials/login.html",

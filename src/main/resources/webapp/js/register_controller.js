@@ -2,7 +2,7 @@
 
 var app = angular.module('register', []);
 
-app.controller('registercontroller', function ($scope, $http) {
+app.controller('registercontroller', function ($scope, $http, $state) {
     console.log('registercontroller');
     $scope.oldUser={};
 
@@ -39,7 +39,8 @@ app.controller('registercontroller', function ($scope, $http) {
                 data: $scope.user
             }).then(function (response) {
                 console.log(response);
-                alert('Registrado com sucesso');
+                alert('Usuário cadastrado com sucesso!');
+                window.location.href = "/login.html";
             }, function (error) {
                 alert('Erro ao Cadastrar');
             });

@@ -2,11 +2,7 @@ package br.edu.unitri.posjava.tcc.med4you.model;
 
 import br.edu.unitri.posjava.tcc.med4you.dto.UserDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by edufratari on 18/07/18.
@@ -15,7 +11,7 @@ import javax.persistence.OneToOne;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

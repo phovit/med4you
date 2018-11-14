@@ -27,7 +27,7 @@ app.controller('medicinecontroller', function ($scope, $http) {
         });
 
     }
-
+/*
     var loadDatabase = [
         {   "name":"NomeMedicamento",
             "codebar":"999999999",
@@ -45,7 +45,7 @@ app.controller('medicinecontroller', function ($scope, $http) {
 
     for (var i =0 ; i < loadDatabase.length ; i++){
         $scope.save(loadDatabase[i]);
-    }
+    }*/
 
 
     $scope.listarMedicamentos();

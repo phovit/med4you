@@ -53,13 +53,13 @@ body{
 
 }
 
-#user_area_photo {
+#logoutDoor {
     width: 40px;
     margin-top: 5px;
+    margin-left: 15px;
     margin-right: 15px;
     height: 40px;
-    border-radius: 100%;
-    background-image: url('https://scontent.fudi1-1.fna.fbcdn.net/v/t1.0-1/c0.0.160.160/p160x160/26992634_1380732198698921_4856067253155580376_n.jpg?_nc_cat=0&oh=627af9e78bc35fbb2e00d418986cbbf6&oe=5BD12BE3');
+    background-image: url('../img/logout.png');
     background-size: 100%;
 
 }

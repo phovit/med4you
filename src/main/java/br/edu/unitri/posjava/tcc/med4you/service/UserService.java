@@ -106,4 +106,13 @@ public class UserService {
     public User findByUsername(String username) {
         return repository.findByUsername(username);
     }
+
+    public UserDTO findByEmail(String email) {
+
+        return repository.findByEmail(email).toDTO();
+    }
+
+    public UserDTO findByCpf(String cpf) {
+        return repository.findByCPF(cpf).toDTO();
+    }
 }

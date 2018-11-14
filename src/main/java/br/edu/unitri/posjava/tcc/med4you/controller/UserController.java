@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,13 +69,27 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<User> findAll() {
-        return service.findAll();
+    public List<UserDTO> findAll() {
+        List<UserDTO> dtos = new ArrayList<>();
+        for(User user : service.findAll()){
+            dtos.add(user.toDTO());
+        }
+        return dtos;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public User findById(@PathVariable("id") Long id) {
-        return service.findById(id);
+    public UserDTO findById(@PathVariable("id") Long id) {
+        return service.findById(id).toDTO();
+    }
+
+    @RequestMapping(value = "/findByCpf/{cpf}", method = RequestMethod.GET)
+    public UserDTO findByCpf(@PathVariable("cpf") String cpf) {
+        return service.findByCpf(cpf);
+    }
+
+    @RequestMapping(value = "/findByEmail/{email}", method = RequestMethod.GET)
+    public UserDTO findByEmail(@PathVariable("email") String email) {
+        return service.findByEmail(email);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

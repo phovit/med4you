@@ -40,7 +40,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/login/error").permitAll()
 				.antMatchers( "/js/**", "/css/**").permitAll()
-				.antMatchers( "/index.html","/","/login").permitAll()
+				.antMatchers( "/index.html",
+						"/",
+						"/login",
+						"/login.html",
+						"/login.css",
+						"/register",
+						"/screens/partials/css/login.css",
+						"/screens/partials/login.html",
+                        "/screens/register.html"
+
+						).permitAll()
 
 				/**SWAGGER FILES IS FULL PERMITTED**/
 				.antMatchers( "/swagger-ui.html",

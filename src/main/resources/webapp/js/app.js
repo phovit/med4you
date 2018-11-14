@@ -35,6 +35,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "screens/user.html",
             controller: "usercontroller"
         })
+        .state('register', {
+            url: "/register",
+            templateUrl: "screens/register.html",
+            controller: "registercontroller"
+        })
         .state('medicalprescription', {
             url: "/medicalprescription",
             templateUrl: "screens/medical_prescription.html",

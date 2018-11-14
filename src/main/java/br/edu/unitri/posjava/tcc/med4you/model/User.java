@@ -1,5 +1,7 @@
 package br.edu.unitri.posjava.tcc.med4you.model;
 
+import br.edu.unitri.posjava.tcc.med4you.dto.UserDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -133,5 +135,31 @@ public class User {
         this.password = password;
     }
 
+    public User fromDTO(UserDTO dto){
+        this.setAddress(dto.getAddress());
+        this.setBirthDate(dto.getBirthDate());
+        this.setCellPhone(dto.getCellPhone());
+        this.setCpf(dto.getCpf());
+        this.setEmail(dto.getEmail());
+        this.setIdentity(dto.getIdentity());
+        this.setName(dto.getName());
+        this.setUsername(dto.getUsername());
+        this.setPhone(dto.getPhone());
+        return this;
+    }
+    public UserDTO toDTO(){
+        UserDTO dto = new UserDTO();
 
+        dto.setAddress(this.getAddress());
+        dto.setBirthDate(this.getBirthDate());
+        dto.setCellPhone(this.getCellPhone());
+        dto.setCpf(this.getCpf());
+        dto.setEmail(this.getEmail());
+        dto.setIdentity(this.getIdentity());
+        dto.setName(this.getName());
+        dto.setUsername(this.getUsername());
+        dto.setPhone(this.getPhone());
+
+        return dto;
+    }
 }

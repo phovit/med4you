@@ -3,38 +3,45 @@
 <head>
     <link href="css/main.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
-    <link rel="stylesheet"
-          href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <title>Med4You - Login</title>
-    <link rel="icon" type="image/x-icon"
-          href="https://cdn6.aptoide.com/imgs/6/c/4/6c4816bd064cf2631b051c74816fcf15_icon.png?w=256">
+    <link rel="icon" type="image/x-icon" href="https://cdn6.aptoide.com/imgs/6/c/4/6c4816bd064cf2631b051c74816fcf15_icon.png?w=256">
+    <script>
+        function goBack() {
+            window.history.back()
+        }
+    </script>
 </head>
 
 <body>
-<div style="background-color: #337ab7; height: 100%;">
-    <div style="padding-top: 12%;" class="form-check">
+    <div style="background-color: #337ab7; height: 100%;">
+        <div style="padding-top: 12%;" class="form-check">
 
-        <div id="boxLogin">
+            <div id="boxLogin">
 
-            <form name="f" action="/login" method="POST">
-                <fieldset>
+                <form name="f" action="/login" method="POST">
+                    <fieldset>
 
 
-                    <input type="text" placeholder="Usuario" id="username" name="username"/>
-                    <input type="password" placeholder="Senha" id="password" name="password"/>
+                        <input type="text" placeholder="Usuario" id="username" name="username" />
+                        <input type="password" placeholder="Senha" id="password" name="password" />
 
-                    <br>
-                    <div class="form-actions">
-                        <input name="submit" class="btn" id="btnAccess" type="submit" value="Login">
-                    </div>
-                    <br>
-                </fieldset>
-            </form>
+                        <br>
+                        <div class="form-actions">
+                            <input name="submit" class="btn" id="btnAccess" type="submit" value="Login">
+                        </div>
+                        <div class="form-actions">
+                            <input class="btn" id="btnBack" type="button" value="Voltar" onclick="goBack()">
+                        </div>
+                        <br>
+                    </fieldset>
+                </form>
 
+
+            </div>
 
         </div>
-
     </div>
-</div>
 </body>
+
 </html>

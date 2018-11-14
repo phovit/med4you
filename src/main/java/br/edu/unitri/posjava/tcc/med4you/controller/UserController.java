@@ -63,6 +63,11 @@ public class UserController {
         service.save(user);
     }
 
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public void register(@RequestBody User user) {
+        service.save(user);
+    }
+
     @RequestMapping(method = RequestMethod.PUT)
     public void update(@RequestBody User user) {
         service.update(user);

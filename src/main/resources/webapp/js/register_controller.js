@@ -35,7 +35,7 @@ app.controller('registercontroller', function ($scope, $http) {
 
             $http({
                 method: 'POST',
-                url: '/users',
+                url: '/users/register',
                 data: $scope.user
             }).then(function (response) {
                 console.log(response);
@@ -124,7 +124,7 @@ app.controller('registercontroller', function ($scope, $http) {
     }
 
     $scope.sendPhoto = function () {
-        $http({
+        /*$http({
             method: 'POST',
             url: '/files/upload',
             data: $scope.image,
@@ -137,7 +137,7 @@ app.controller('registercontroller', function ($scope, $http) {
             alert('upload ok -->'+response.data);
         }, function (error) {
             alert('Erro ao enviar imagem');
-        });
+        });*/
     };
 
 });

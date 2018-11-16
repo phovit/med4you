@@ -32,6 +32,9 @@ public class ReminderService {
     @Autowired
     private ReminderRepository repository;
 
+    @Autowired
+    private UserService userService;
+
     public void save(Reminder reminder) {
         repository.save(reminder);
         scheduleNotification(reminder);
@@ -88,4 +91,7 @@ public class ReminderService {
 
     }
 
+    public List<Reminder> findByResponsableUserId(Long userId) {
+        return this.findByUserId(userService.findByResponsableId(userId).getId());
+    }
 }

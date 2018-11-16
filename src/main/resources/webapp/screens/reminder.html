@@ -5,55 +5,44 @@
             <button class="btn btn-primary" ng-click="showAddForm = true">+</button>
         </h2>
         <div class="row" ng-show="!!showAddForm">
-            <div class="col-md-2 form-group">
-                <div class="row">
-                    <label for="medicine" >Medicamento</label><br>
-                    <input id="medicine"
-                           type="text" class="form-control"
-                           placeholder="Medicamento"
-                           ng-change="findMedicines()"
-                           ng-model="medicineSearch">
-
-                </div>
-                <div class="row form-control" style="position:absolute; z-index: 100; height: fit-content; padding: 0px;" ng-if="!!showMedResults">
-                    <ul style="list-style-type:none; margin: 0px; padding: 0px;">
-                        <li ng-repeat="med in medicineSearchResults"
-                            ng-click="selectMedicine( med )"
-                            style="cursor: pointer; margin: 0px; padding: 0px;" class="selectItem">
-                            <div class="row" style=" margin: 0px; padding: 0px;">
-                                <div class="col-md-2" style=" margin: 0px; padding: 0px;">{{med.id}}</div>
-                                <div class="col-md-10"
-                                     style="border-left: 1px solid #337ab7;  margin: 0px; padding: 0px;">{{med.name}}
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="form-group row">
+                <div class="form-group col-md-3">
+                    <div class="col-md-12" style="text-align: left"><label for="responsableUser">Medicamento</label></div>
+                    <ui-select id="responsableUser" ng-click="findMedicines()" ng-change="findMedicines($select.search)"
+                        ng-model="reminder.medicine" theme="selectize" style="width: 300px;" title="Medicamento">
+                        <ui-select-match placeholder="Medicamento">{{reminder.medicine.name}}</ui-select-match>
+                        <ui-select-choices repeat="medicine in medicineSearchResults | filter: $select.search">
+                            <span ng-bind-html="medicine.name | highlight: $select.search"></span>
+                            <!--<small ng-bind-html="country.code | highlight: $select.search"></small>-->
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
             </div>
 
             <div class="col-md-3 form-group">
-                <label for="firstDose" >Primeira Dose</label><br>
-                <input id="firstDose"  class="form-control" type="datetime-local" placeholder="1ª Dose" ng-model="reminder.firstDose" style="padding-left: 4px;padding-right: 2px;">
+                <label for="firstDose">Primeira Dose</label><br>
+                <input id="firstDose" class="form-control" type="datetime-local" placeholder="1ª Dose" ng-model="reminder.firstDose"
+                    style="padding-left: 4px;padding-right: 2px;">
             </div>
 
             <div class="col-md-2 form-group">
-                <label for="dosage" >Dosagem</label><br>
-                <input id="dosage"  class="form-control" type="text" placeholder="Dosagem" ng-model="reminder.dosage">
+                <label for="dosage">Dosagem</label><br>
+                <input id="dosage" class="form-control" type="text" placeholder="Dosagem" ng-model="reminder.dosage">
             </div>
 
             <div class="col-md-2 form-group">
-                <label for="qtdDoses" >Quantas Doses</label><br>
-                <input id="qtdDoses"   class="form-control" type="text" placeholder="Doses" ng-model="qtdDoses">
+                <label for="qtdDoses">Quantas Doses</label><br>
+                <input id="qtdDoses" class="form-control" type="text" placeholder="Doses" ng-model="qtdDoses">
             </div>
 
             <div class="col-md-2 form-group">
                 <label for="intervaloEmHoras">Intervalo</label><br>
-                <input id="intervaloEmHoras"   class="form-control" type="text" placeholder="Horas" ng-model="intervalo">
+                <input id="intervaloEmHoras" class="form-control" type="text" placeholder="Horas" ng-model="intervalo">
             </div>
 
             <div class="col-md-12 form-group" style="padding-left: 0px;">
-                <label for="observation" >Observação</label><br>
-                <textarea ng-model="reminder.observation"  class="form-control"  id="observation"  placeholder="Observação" ></textarea>
+                <label for="observation">Observação</label><br>
+                <textarea ng-model="reminder.observation" class="form-control" id="observation" placeholder="Observação"></textarea>
             </div>
 
             <div class="col-md-12 form-group">
@@ -65,29 +54,27 @@
 
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Medicamento</th>
-                    <th scope="col">Dosagem</th>
-                    <th scope="col">1ª dose</th>
-                    <th scope="col">Obs.</th>
-                    <th scope="col">Ações</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Medicamento</th>
+                        <th scope="col">Dosagem</th>
+                        <th scope="col">1ª dose</th>
+                        <th scope="col">Obs.</th>
+                        <th scope="col">Ações</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="reminder in reminders">
-                    <td scope="row">{{reminder.medicine.name}}</td>
-                    <td scope="row">{{reminder.dosage}}</td>
-                    <td scope="row">{{reminder.firstDose | date : 'dd/MM/yyyy HH:mm'}}</td>
-                    <td scope="row">{{reminder.observation}}</td>
-                    <td scope="row">
-                        <img width="20px" height="20px"
-                             src="https://img.freepik.com/icones-gratis/nota-simbolo-de-interface_318-69447.jpg?size=338&ext=jpg"
-                             ng-click="edit(reminder)">
-                        <img width="20px" height="20px"
-                             src="https://cdn3.iconfinder.com/data/icons/objects/512/Bin-512.png"
-                             ng-click="delete(reminder.id)">
-                    </td>
-                </tr>
+                    <tr ng-repeat="reminder in reminders">
+                        <td scope="row">{{reminder.medicine.name}}</td>
+                        <td scope="row">{{reminder.dosage}}</td>
+                        <td scope="row">{{reminder.firstDose | date : 'dd/MM/yyyy HH:mm'}}</td>
+                        <td scope="row">{{reminder.observation}}</td>
+                        <td scope="row">
+                            <img width="20px" height="20px" src="https://img.freepik.com/icones-gratis/nota-simbolo-de-interface_318-69447.jpg?size=338&ext=jpg"
+                                ng-click="edit(reminder)">
+                            <img width="20px" height="20px" src="https://cdn3.iconfinder.com/data/icons/objects/512/Bin-512.png"
+                                ng-click="delete(reminder.id)">
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

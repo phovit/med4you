@@ -2,15 +2,14 @@
 
     <div style="max-width: 800px; margin: auto; margin-top: 20px;">
         <h2>Receitas Médicas
-            <button class="btn btn-primary" ng-click="showAddForm = true">+</button>
         </h2>
-        <div class="row" ng-show="!!showAddForm">
+        <div class="row">
             <div class="col-md-2 form-group">
                 <div class="row">
-                    <label for="medicine">Médico</label><br>
-                    <input id="medicine"
+                    <label for="doctor">Médico</label><br>
+                    <input id="doctor" ng-model="doctorSearch"
                            type="text" class="form-control"
-                           placeholder="Medicamento"
+                           placeholder="Médico"
                            ng-change="findDoctors()"
                            ng-model="doctorSearch">
 
@@ -20,7 +19,7 @@
                      ng-if="!!showMedResults">
                     <ul style="list-style-type:none; margin: 0px; padding: 0px;">
                         <li ng-repeat="doctor in doctorSearchResults"
-                            ng-click="selectDoctors( doctor )"
+                            ng-click="selectDoctor( doctor )"
                             style="cursor: pointer; margin: 0px; padding: 0px;" class="selectItem">
                             <div class="row" style=" margin: 0px; padding: 0px;">
                                 <div class="col-md-2" style=" margin: 0px; padding: 0px;">{{doctor.id}}</div>
@@ -32,32 +31,40 @@
                     </ul>
                 </div>
             </div>
-
             <div class="col-md-3 form-group">
-                <label for="firstDose">CID</label><br>
-                <input id="firstDose" class="form-control" type="datetime-local" placeholder="1ª Dose"
-                       ng-model="medicalPrescription.cid" style="padding-left: 4px;padding-right: 2px;">
+                <label for="cid">CID</label><br>
+                <input type="text" id="cid" ng-model="medicalPrescription.cid" placeholder="000" class="form-control">
+            </div>
+            <div class="col-md-7 form-group">
+                <label for="medicalPrescriptionText">Receita</label><br>
+                <textarea id="medicalPrescriptionText" class="form-control" type="text"
+                ng-model="medicalPrescription.medicalPrescriptionText"></textarea>
             </div>
 
-
+            <div class="col-md-8 form-group" style="text-align:left">
+                <label>Não encontrou seu médico?</label>
+                <button class="btn btn-primary" ng-click="cadastrarMedico()">Cadastrar Médico</button>
+            </div>
+            <div class="col-md-4 form-group">
+                <button class="btn btn-primary" ng-click="save(medicalPrescription)">Salvar</button>
+                <button class="btn btn-primary">Cancelar</button>
+            </div>
             <div class="row">
 
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Medicamento</th>
-                        <th scope="col">Dosagem</th>
-                        <th scope="col">1ª dose</th>
-                        <th scope="col">Obs.</th>
-                        <th scope="col">Ações</th>
+                        <th scope="col">Médico</th>
+                        <th scope="col">CID</th>
+                        <th scope="col">Receita</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="medicalPrescription in medicalPrescriptions">
-                        <td scope="row">{{medicalPrescription.medicine.name}}</td>
-                        <td scope="row">{{medicalPrescription.dosage}}</td>
-                        <td scope="row">{{medicalPrescription.firstDose | date : 'dd/MM/yyyy HH:mm'}}</td>
-                        <td scope="row">{{medicalPrescription.observation}}</td>
+                        <td scope="row">{{medicalPrescription.doctor.name}}</td>
+                        <td scope="row">{{medicalPrescription.cid}}</td>
+                        <td scope="row">{{medicalPrescription.medicalPrescriptionText}}</td>
                         <td scope="row">
                             <img width="20px" height="20px"
                                  src="https://img.freepik.com/icones-gratis/nota-simbolo-de-interface_318-69447.jpg?size=338&ext=jpg"
@@ -66,13 +73,8 @@
                                  src="https://cdn3.iconfinder.com/data/icons/objects/512/Bin-512.png"
                                  ng-click="delete(medicalPrescription.id)">
                         </td>
-                    </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="col-md-12 form-group">
-                <button class="btn btn-primary" ng-click="save(medicalPrescription)">Salvar</button>
-                <button class="btn btn-primary" ng-click="showAddForm = false">Cancelar</button>
             </div>
         </div>
 

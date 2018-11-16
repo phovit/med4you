@@ -1,6 +1,6 @@
 'use strict'
 
-var app = angular.module('user', []);
+var app = angular.module('user', ['ngSanitize', 'ui.select']);
 
 app.controller('usercontroller', function ($scope, $http) {
     console.log('usercontroller');
@@ -27,7 +27,8 @@ app.controller('usercontroller', function ($scope, $http) {
         $scope.oldUser.identity !== $scope.user.identity ||
         $scope.oldUser.name !== $scope.user.name ||
         $scope.oldUser.phone !== $scope.user.phone ||
-        $scope.oldUser.username !== $scope.user.username
+        $scope.oldUser.username !== $scope.user.username ||
+        $scope.oldUser.responsableUser !== $scope.user.responsableUser
     }
 
     $scope.getInfoUser();
@@ -151,8 +152,58 @@ app.controller('usercontroller', function ($scope, $http) {
             console.log(response);
             alert('upload ok -->'+response.data);
         }, function (error) {
-            alert('Erro ao enviar imagem');
+            console.log('Erro ao enviar imagem');
         });
     };
 
+   
+
+    $scope.getUsers = function () {
+        $http({
+            method: 'GET',
+            url: '/users'
+        }).then(function (response) {
+            $scope.responsables = response.data;
+            $scope.getInfoUser();
+        }, function (error) {
+            alert('Erro ao Atualizar');
+            $scope.getInfoUser();
+        });
+    };
+
+    $scope.getUsers();
+
 });
+
+
+app.filter('propsFilter', function() {
+    return function(items, props) {
+      var out = [];
+  
+      if (angular.isArray(items)) {
+        var keys = Object.keys(props);
+  
+        items.forEach(function(item) {
+          var itemMatches = false;
+  
+          for (var i = 0; i < keys.length; i++) {
+            var prop = keys[i];
+            var text = props[prop].toString().toLowerCase();
+            if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+              itemMatches = true;
+              break;
+            }
+          }
+  
+          if (itemMatches) {
+            out.push(item);
+          }
+        });
+      } else {
+        // Let the output be the input untouched
+        out = items;
+      }
+  
+      return out;
+    };
+  });

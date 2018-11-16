@@ -24,8 +24,11 @@ public class MedicalPrescription {
 
     private String cid;
 
-    @OneToMany
-    private List<MedicalPrescriptionItem> medicalPrescriptionItem;
+    private String medicalPrescriptionText;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public MedicalPrescription() {
         super();
@@ -55,12 +58,19 @@ public class MedicalPrescription {
         this.cid = cid;
     }
 
-    public List<MedicalPrescriptionItem> getMedicalPrescriptionItem() {
-        return medicalPrescriptionItem;
+    public String getMedicalPrescriptionText() {
+        return medicalPrescriptionText;
     }
 
-    public void setMedicalPrescriptionItem(List<MedicalPrescriptionItem> medicalPrescriptionItem) {
-        this.medicalPrescriptionItem = medicalPrescriptionItem;
+    public void setMedicalPrescriptionText(String medicalPrescriptionText) {
+        this.medicalPrescriptionText = medicalPrescriptionText;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

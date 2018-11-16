@@ -50,4 +50,10 @@ public class ReminderController {
     public void delete(@PathVariable("id") Long id) {
         service.delete(id);
     }
+
+    @RequestMapping(value = "/findByResponsableUserId/{userId}", method = RequestMethod.GET)
+    public List<Reminder> findByResponsableUserId(@PathVariable("userId") Long userId) {
+        return service.findByResponsableUserId(userId);
+    }
+
 }

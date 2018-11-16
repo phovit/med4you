@@ -1,0 +1,77 @@
+<div data-ng-controller="doctorcontroller">
+    <div style="max-width: 800px; margin: auto; margin-top: 20px;">
+        <h2>Cadastrar Médicos</h2>
+        <form>
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="crm">CRM</label>
+                        <input id="crm" class="form-control" type="text" ng-model="doctor.crm" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input id="name" class="form-control" type="text" ng-model="doctor.name" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input id="phone" class="form-control" type="text" ng-model="doctor.phone" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="mail">Email</label>
+                        <input id="mail" class="form-control" type="text" ng-model="doctor.email" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="clinicAddress">Endereço da clínica</label>
+                        <input id="clinicAddress" class="form-control" type="text" ng-model="doctor.clinicAddress" />
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group col-md-12">
+                <button class="btn btn-primary" ng-click="save()">Salvar</button>
+                <button class="btn btn-primary" ng-click="clear()">Limpar</button>
+            </div>
+        </form>
+        <div class="row">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">CRM</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Endereço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="doctor in doctors">
+                            <td scope="row">{{doctor.crm}}</td>
+                            <td scope="row">{{doctor.name}}</td>
+                            <td scope="row">{{doctor.email}}</td>
+                            <td scope="row">{{doctor.phone}}</td>
+                            <td scope="row">{{doctor.clinicAddress}}</td>
+                        <td scope="row">
+                            <img width="20px" height="20px" src="https://img.freepik.com/icones-gratis/nota-simbolo-de-interface_318-69447.jpg?size=338&ext=jpg"
+                                ng-click="edit(doc)">
+                            <img width="20px" height="20px" src="https://cdn3.iconfinder.com/data/icons/objects/512/Bin-512.png"
+                                ng-click="delete(doctor.id)">
+                        </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -43,8 +43,18 @@ public class MedicalPrescriptionController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void delete(Long id) {
+	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);
+	}
+
+	@RequestMapping(value = "/findByUserId/{userId}", method = RequestMethod.GET)
+	public List<MedicalPrescription> findByUserId(@PathVariable("userId") Long userId) {
+		return service.findByUserId(userId);
+	}
+
+	@RequestMapping(value = "/findByResponsableUserId/{userId}", method = RequestMethod.GET)
+	public List<MedicalPrescription> findByResponsableUserId(@PathVariable("userId") Long userId) {
+		return service.findByResponsableUserId(userId);
 	}
 
 }

@@ -101,4 +101,10 @@ public class UserController {
     public void delete(Long id) {
         service.delete(id);
     }
+
+
+    @RequestMapping(value = "/getDependente", method = RequestMethod.GET)
+    public UserDTO getDependente(){
+        return service.findByResponsableId(service.findLogged().getId());
+    }
 }

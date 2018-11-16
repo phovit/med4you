@@ -28,7 +28,7 @@ public class User {
     private String username;
     private String password;
 
-    @ManyToOne
+    @OneToOne
     private User responsableUser;
 
     public User() {
@@ -132,6 +132,7 @@ public class User {
     }
 
     public User fromDTO(UserDTO dto){
+        this.setId(dto.getId());
         this.setAddress(dto.getAddress());
         this.setBirthDate(dto.getBirthDate());
         this.setCellPhone(dto.getCellPhone());
@@ -141,11 +142,13 @@ public class User {
         this.setName(dto.getName());
         this.setUsername(dto.getUsername());
         this.setPhone(dto.getPhone());
+        this.setResponsableUser(dto.getResponsableUser());
         return this;
     }
     public UserDTO toDTO(){
         UserDTO dto = new UserDTO();
 
+        dto.setId(this.getId());
         dto.setAddress(this.getAddress());
         dto.setBirthDate(this.getBirthDate());
         dto.setCellPhone(this.getCellPhone());
@@ -155,6 +158,7 @@ public class User {
         dto.setName(this.getName());
         dto.setUsername(this.getUsername());
         dto.setPhone(this.getPhone());
+        dto.setResponsableUser(this.getResponsableUser());
 
         return dto;
     }

@@ -35,10 +35,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "screens/user.html",
             controller: "usercontroller"
         })
+        .state('doctor', {
+            url: "/doctor",
+            templateUrl: "screens/doctor.html",
+            controller: "doctorcontroller"
+        })
         .state('register', {
             url: "/register",
             templateUrl: "screens/register.html",
             controller: "registercontroller"
+        })
+        .state('receitasdependentes', {
+            url: "/receitasdependentes",
+            templateUrl: "screens/receitasdependentes.html",
+            controller: "receitasdependentescontroller"
+        })
+        .state('lembretesdependentes', {
+            url: "/lembretesdependentes",
+            templateUrl: "screens/lembretesdependentes.html",
+            controller: "lembretesdependentescontroller"
         })
         .state('medicalprescription', {
             url: "/medicalprescription",

@@ -28,8 +28,21 @@
     <script src="js/login_controller.js"></script>
     <script src="js/reminder_controller.js"></script>
     <script src="js/medical_prescription.js"></script>
+    <script src="js/doctor_controller.js"></script>
+    <script src="js/lembretesdependentes_controller.js"></script>
+    <script src="js/receitasdependentes_controller.js"></script>
 
     <title>Med4You</title>
+
+
+
+
+    <script src="../js/select.js"></script>
+    <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-sanitize.js"></script>
 </head>
 
 <body data-ng-app="app">
@@ -60,13 +73,32 @@
                     </div>
 
                 </li>
+
+
+                <li  class="dropdown" ng-if="!!isLogged">
+                    <a ui-sref="doctor"><div class="dropbtn">Médicos</div></a>
+                    <div class="dropdown-content">
+                        <a ui-sref="doctor" ng-if="!!isLogged" ng-enabled="!!$scope.isLogged">Cadastro de médicos</a>
+                    </div>
+
+                </li>
+
+
+                <li  class="dropdown" ng-if="!!isLogged">
+                    <a><div class="dropbtn">Dependentes</div></a>
+                    <div class="dropdown-content">
+                            <a ui-sref="receitasdependentes" ng-if="!!isLogged" ng-enabled="!!$scope.isLogged">Receitas</a>
+                            <a ui-sref="lembretesdependentes" ng-if="!!isLogged" ng-enabled="!!$scope.isLogged">Lembretes</a>
+                    </div>
+
+                </li>
             </ul>
         </div>
 
 
 
         <div id="user_area">
-            <div style="width: 100%; height: 100%; display: inline-flex;" ng-show="!!isLogged"
+            <div style="width: 100%; height: 100%; display: inline-flex;" ng-show="!!isLogged">
                 <label class="cor1" id="user_area_name">{{loggedUser.name}}</label>
                 <a  href="/logout" id="logoutDoor"></a>
             </div>

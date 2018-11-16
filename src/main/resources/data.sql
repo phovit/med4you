@@ -12,5 +12,10 @@ insert into medicine (id, name, generic) values (10,'Dorflex 4',0);
 
 insert into user (id, name, username, password, cpf, email) values (5000,'Paulo Henrique', 'paulo','admin','00000000000','paulo@med4you.com');
 insert into user (id, name, username, password, cpf, email) values (5001,'Eduardo', 'eduardo','admin','11111111111','eduardo@med4you.com');
-insert into user (id, name, username, password, cpf, email) values (5002,'Filipe', 'filipe','admin','22222222222','filipe@med4you.com');
-insert into user (id, name, username, password, cpf, email) values (5003,'Administrador', 'admin','admin','33333333333','admin@med4you.com');
+insert into user (id, name, username, password, cpf, email, responsable_user_id) values (5002,'Filipe', 'filipe','admin','22222222222','filipe@med4you.com', 5001);
+insert into user (id, name, username, password, cpf, email, responsable_user_id) values (5003,'Administrador', 'admin','admin','33333333333','admin@med4you.com', 5000);
+
+
+
+Insert into doctor (id, name) values (1, 'Pedro');
+Insert into doctor (id, name) values (2, 'Zé');

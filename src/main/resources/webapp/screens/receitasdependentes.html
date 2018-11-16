@@ -1,0 +1,29 @@
+<div data-ng-controller="receitasdependentescontroller">
+   
+        <div style="max-width: 800px; margin: auto; margin-top: 20px;">
+                <div class="row" style="font-size: xx-large;">
+                        <label >Dependente: </label>
+                        <label>{{dependente.name}} </label>
+                </div>
+                <div class="row">
+                  
+
+                <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Médico</th>
+                            <th scope="col">CID</th>
+                            <th scope="col">Receita</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="medicalPrescription in medicalPrescriptions">
+                            <td scope="row">{{medicalPrescription.doctor.name}}</td>
+                            <td scope="row">{{medicalPrescription.cid}}</td>
+                            <td scope="row">{{medicalPrescription.medicalPrescriptionText}}</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+        </div>

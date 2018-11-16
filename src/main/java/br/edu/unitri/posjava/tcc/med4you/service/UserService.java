@@ -81,17 +81,7 @@ public class UserService {
         if (principal instanceof User) {
             User u = this.findById(((User) principal).getId());
 
-            UserDTO user = new UserDTO();
-            user.setName(u.getName());
-            user.setUsername(u.getUsername());
-            user.setAddress(u.getAddress());
-            user.setBirthDate(u.getBirthDate());
-            user.setCellPhone(u.getCellPhone());
-            user.setCpf(u.getCpf());
-            user.setEmail(u.getEmail());
-            user.setId(u.getId());
-            user.setIdentity(u.getIdentity());
-            user.setPhone(u.getPhone());
+            UserDTO user = u.toDTO();
 
             return user;
         } else {
@@ -114,5 +104,10 @@ public class UserService {
 
     public UserDTO findByCpf(String cpf) {
         return repository.findByCPF(cpf).toDTO();
+    }
+
+    public UserDTO findByResponsableId(Long userId) {
+        return repository.findByResponsableId(userId).toDTO();
+
     }
 }

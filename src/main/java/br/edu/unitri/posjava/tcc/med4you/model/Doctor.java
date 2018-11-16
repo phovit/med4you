@@ -3,10 +3,7 @@ package br.edu.unitri.posjava.tcc.med4you.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 /**
  * Created by edufratari on 01/08/18.
@@ -15,7 +12,7 @@ import javax.persistence.OneToMany;
 public class Doctor {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;

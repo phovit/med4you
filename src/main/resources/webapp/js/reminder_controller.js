@@ -1,6 +1,6 @@
 'use strict'
 
-var app = angular.module('reminder', []);
+var app = angular.module('reminder', ['ngSanitize', 'ui.select']);
 
 app.controller('remindercontroller', function ($scope, $http) {
     $scope.reminders = [];
@@ -28,6 +28,7 @@ app.controller('remindercontroller', function ($scope, $http) {
             url: '/reminders/' + id
         }).then(function (response) {
             $scope.reminders = response.data;
+            $scope.getReminders();
         });
 
     };
@@ -37,9 +38,9 @@ app.controller('remindercontroller', function ($scope, $http) {
         var qtdDoses =  parseInt($scope.qtdDoses);
 
         for (var i = 0; i < qtdDoses; i++) {
-            reminder.firstDose = angular.copy(addHours(reminder.firstDose, $scope.intervalo));
             reminder.onLoop = true;
             $scope.save(angular.copy(reminder));
+            reminder.firstDose = angular.copy(addHours(reminder.firstDose, $scope.intervalo));
         }
     }
 
@@ -48,6 +49,7 @@ app.controller('remindercontroller', function ($scope, $http) {
     }
 
     $scope.save = function (reminder) {
+        reminder.medicine = $scope.$$childHead.reminder.medicine;
         reminder.user = $scope.user;
         var method = '';
 
@@ -80,6 +82,7 @@ app.controller('remindercontroller', function ($scope, $http) {
         $scope.isEditing = true;
         $scope.reminder = angular.copy(reminder);
         $scope.medicineSearch = angular.copy(reminder.medicine.name);
+        $scope.showAddForm = true;
     }
 
     $scope.getReminders();
@@ -107,6 +110,34 @@ app.controller('remindercontroller', function ($scope, $http) {
         }
     }
 
+    $scope.$watch('$$childHead.$select.search', function() {
+        if (!!$scope.$$childHead.$select.search && $scope.$$childHead.$select.search.length >= 3) {
+            $http({
+                method: 'GET',
+                url: '/medicine/findByName/' + $scope.$$childHead.$select.search
+            }).then(function (response) {
+                $scope.medicineSearchResults = response.data;
+            }, function (error) {
+                console.log(error);
+            });
+            $scope.showMedResults = true;
+        }
+    });
+
+    $scope.findMedicines = function (value) {
+        if (!!value && value.length >= 3) {
+            $http({
+                method: 'GET',
+                url: '/medicine/findByName/' + value
+            }).then(function (response) {
+                $scope.medicineSearchResults = response.data;
+            }, function (error) {
+                console.log(error);
+            });
+            $scope.showMedResults = true;
+        }
+    }
+
     $scope.selectMedicine = function (med) {
         console.log("OnClick()");
         if (!$scope.reminder) {
@@ -117,4 +148,52 @@ app.controller('remindercontroller', function ($scope, $http) {
         $scope.isMedSelected = true;
         $scope.showMedResults = false;
     }
+
+
+    $scope.findAllMedicines = function () {
+            $http({
+                method: 'GET',
+                url: '/medicine'
+            }).then(function (response) {
+                $scope.medicineSearchResults = response.data;
+            }, function (error) {
+                console.log(error);
+            });
+            $scope.showMedResults = true;
+    }
+
+    $scope.findAllMedicines();
 });
+
+
+app.filter('propsFilter', function() {
+    return function(items, props) {
+      var out = [];
+  
+      if (angular.isArray(items)) {
+        var keys = Object.keys(props);
+  
+        items.forEach(function(item) {
+          var itemMatches = false;
+  
+          for (var i = 0; i < keys.length; i++) {
+            var prop = keys[i];
+            var text = props[prop].toString().toLowerCase();
+            if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+              itemMatches = true;
+              break;
+            }
+          }
+  
+          if (itemMatches) {
+            out.push(item);
+          }
+        });
+      } else {
+        // Let the output be the input untouched
+        out = items;
+      }
+  
+      return out;
+    };
+  });

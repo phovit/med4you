@@ -14,5 +14,4 @@ public interface ReminderRepository extends JpaRepository<Reminder, Long> {
 
     @Query("SELECT r FROM Reminder r WHERE r.user.id = :userId")
     List<Reminder> findByUserId(@Param("userId") Long userId);
-
 }

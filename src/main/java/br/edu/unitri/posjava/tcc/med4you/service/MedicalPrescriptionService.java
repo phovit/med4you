@@ -17,6 +17,9 @@ public class MedicalPrescriptionService {
 	@Autowired
 	private MedicalPrescriptionRepository repository;
 
+	@Autowired
+	private UserService userService;
+
 	public void save(MedicalPrescription medicalPrescription) {
 		repository.save(medicalPrescription);
 	}
@@ -35,6 +38,14 @@ public class MedicalPrescriptionService {
 
 	public void delete(Long id) {
 		repository.deleteById(id);
+	}
+
+	public List<MedicalPrescription> findByUserId(Long userId) {
+		return repository.findByUserId(userId);
+	}
+
+	public List<MedicalPrescription> findByResponsableUserId(Long userId) {
+		return this.findByUserId(userService.findByResponsableId(userId).getId());
 	}
 
 }

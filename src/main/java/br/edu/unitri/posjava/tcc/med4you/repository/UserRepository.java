@@ -23,4 +23,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE upper(u.cpf) = upper( ?1 )")
     User findByCPF(@Param("cpf") String cpf);
 
+    @Query("SELECT u FROM User u WHERE upper(u.responsableUser.id) = upper( ?1 )")
+    User findByResponsableId(@Param("id") Long id);
 }

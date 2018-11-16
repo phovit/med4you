@@ -1,6 +1,9 @@
 package br.edu.unitri.posjava.tcc.med4you.dto;
 
 import br.edu.unitri.posjava.tcc.med4you.model.Address;
+import br.edu.unitri.posjava.tcc.med4you.model.User;
+
+import javax.persistence.OneToOne;
 
 /**
  * Created by pauloho on 25/08/18.
@@ -17,6 +20,8 @@ public class UserDTO {
     private String email;
     private String cellPhone;
     private String username;
+
+    private User responsableUser;
 
     public Long getId() {
         return id;
@@ -96,5 +101,14 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    public User getResponsableUser() {
+        return responsableUser;
+    }
+
+    public void setResponsableUser(User responsableUser) {
+        this.responsableUser = responsableUser;
     }
 }

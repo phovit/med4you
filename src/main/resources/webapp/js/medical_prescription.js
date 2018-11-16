@@ -2,9 +2,8 @@
 
 var app = angular.module('medicalprescription', []);
 
-app.controller('medicalprescriptioncontroller', function ($scope, $http) {
+app.controller('medicalprescriptioncontroller', function ($scope, $http,$state) {
     $scope.medicalPrescriptions = [];
-    $scope.showAddForm = false;
 
     $scope.getmedicalPrescriptions = function () {
         $http({
@@ -33,53 +32,26 @@ app.controller('medicalprescriptioncontroller', function ($scope, $http) {
     };
 
 
-    function saveAllmedicalPrescriptions(medicalPrescription) {
-        var qtdDoses =  parseInt($scope.qtdDoses);
-
-        for (var i = 0; i < qtdDoses; i++) {
-            medicalPrescription.firstDose = angular.copy(addHours(medicalPrescription.firstDose, $scope.intervalo));
-            medicalPrescription.onLoop = true;
-            $scope.save(angular.copy(medicalPrescription));
-        }
-    }
-
-    function addHours(data, incremento) {
-        return new Date(new Date(data).getTime() + 60 * 60 * incremento * 1000);
-    }
-
     $scope.save = function (medicalPrescription) {
         medicalPrescription.user = $scope.user;
-        var method = '';
-
-        if (!$scope.isEditing) {
-            method = 'POST';
-        } else {
-            method = 'PUT';
-        }
-
-        if (!!$scope.qtdDoses && $scope.qtdDoses > 1 && !!$scope.intervalo && !medicalPrescription.onLoop && method == 'POST') {
-            saveAllmedicalPrescriptions( medicalPrescription );
-            return;
-        }else{
-            console.log(medicalPrescription.firstDose);
             $http({
-                method: method,
+                method: 'POST',
                 url: '/medicalPrescriptions',
                 data: medicalPrescription
             }).then(function (response) {
                 $scope.getmedicalPrescriptions();
                 $scope.clean();
-                $scope.showAddForm = false;
-                $scope.isEditing = false;
             }, function (error) {
                 console.log(error);
             });
-        }
+        
     }
     $scope.edit = function (medicalPrescription) {
-        $scope.isEditing = true;
         $scope.medicalPrescription = angular.copy(medicalPrescription);
-        $scope.medicineSearch = angular.copy(medicalPrescription.medicine.name);
+        $scope.doctorSearch = angular.copy(medicalPrescription.doctor.name);
+    }
+    $scope.cadastrarMedico = function () {
+        $state.go("doctor")
     }
 
     $scope.getmedicalPrescriptions();
@@ -90,14 +62,14 @@ app.controller('medicalprescriptioncontroller', function ($scope, $http) {
     };
     $scope.clean = function () {
         $scope.medicalPrescription = {};
-        $scope.medicineSearch = "";
+        $scope.doctorSearch = "";
     }
 
     $scope.findDoctors = function () {
-        if ($scope.medicineSearch.length >= 3) {
+        if ($scope.doctorSearch.length >= 3) {
             $http({
                 method: 'GET',
-                url: '/medicine/findByName/' + $scope.medicineSearch
+                url: '/doctors/findByName/' + $scope.doctorSearch
             }).then(function (response) {
                 $scope.doctorSearchResults = response.data;
             }, function (error) {
@@ -107,13 +79,12 @@ app.controller('medicalprescriptioncontroller', function ($scope, $http) {
         }
     }
 
-    $scope.selectMedicine = function (med) {
-        console.log("OnClick()");
+    $scope.selectDoctor = function (doctor) {
         if (!$scope.medicalPrescription) {
             $scope.medicalPrescription = {};
         }
-        $scope.medicineSearch = med.name;
-        $scope.medicalPrescription.medicine = med;
+        $scope.doctorSearch = doctor.name;
+        $scope.medicalPrescription.doctor = doctor;
         $scope.isMedSelected = true;
         $scope.showMedResults = false;
     }

@@ -37,4 +37,7 @@ public class DoctorService {
 		repository.deleteById(id);
 	}
 
+    public List<Doctor> findByName(String name) {
+		return repository.findByName(name);
+    }
 }

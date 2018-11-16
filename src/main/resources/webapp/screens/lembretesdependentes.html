@@ -1,0 +1,31 @@
+<div data-ng-controller="lembretesdependentescontroller">
+
+
+    <div style="max-width: 800px; margin: auto; margin-top: 20px;">
+        <div class="row" style="font-size: xx-large;">
+                <label >Dependente: </label>
+                <label>{{dependente.name}} </label>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Medicamento</th>
+                        <th scope="col">Dosagem</th>
+                        <th scope="col">1ª dose</th>
+                        <th scope="col">Obs.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="reminder in reminders">
+                        <td scope="row">{{reminder.medicine.name}}</td>
+                        <td scope="row">{{reminder.dosage}}</td>
+                        <td scope="row">{{reminder.firstDose | date : 'dd/MM/yyyy HH:mm'}}</td>
+                        <td scope="row">{{reminder.observation}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

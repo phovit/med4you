@@ -110,4 +110,9 @@ public class UserService {
         return repository.findByResponsableId(userId).toDTO();
 
     }
+
+    public UserDTO findByFacebookId(Long fbId) {
+        return repository.findByFacebookId(fbId);
+
+    }
 }

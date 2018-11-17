@@ -64,10 +64,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/users/register",
 						"/screens/partials/css/login.css",
 						"/screens/partials/login.html",
-                        "/screens/register.html"
+						"/screens/register.html",
+						"/img/fb.png"
 
 						).permitAll()
-
+				/**LOGIN COM FACEBOOK**/
+				.antMatchers(
+						"/loginfb",
+						"/loginfbresponse"
+				).permitAll()
 				/**SWAGGER FILES IS FULL PERMITTED**/
 				.antMatchers( "/swagger-ui.html",
 						"/webjars/**",

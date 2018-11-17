@@ -27,6 +27,7 @@ public class User {
     private String cellPhone;
     private String username;
     private String password;
+    private Long facebookId;
 
     @OneToOne
     private User responsableUser;
@@ -161,5 +162,14 @@ public class User {
         dto.setResponsableUser(this.getResponsableUser());
 
         return dto;
+    }
+
+
+    public Long getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(Long facebookId) {
+        this.facebookId = facebookId;
     }
 }

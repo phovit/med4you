@@ -71,3 +71,15 @@
     margin-top:10px;
     color:#FFF;
 }
+
+
+
+#btnFace{
+    background-image:  url("../img/fb.png");
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    padding-left: 45px;
+    background-position: 5px;
+    background-color: #FFF;
+    width: 200px;
+}

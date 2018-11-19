@@ -6,6 +6,7 @@ import br.edu.unitri.posjava.tcc.med4you.security.WSAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -69,18 +70,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 						).permitAll()
 				/**LOGIN COM FACEBOOK**/
-				.antMatchers(
-						"/loginfb",
-						"/loginfbresponse"
-				).permitAll()
+				.antMatchers("/loginfb","/loginfbresponse").permitAll()
 				/**SWAGGER FILES IS FULL PERMITTED**/
-				.antMatchers( "/swagger-ui.html",
-						"/webjars/**",
-						"/swagger-resources/**",
-						"/v2/api-docs").permitAll()
+				.antMatchers( "/swagger-ui.html","/webjars/**","/swagger-resources/**","/v2/api-docs").permitAll()
 
 				.antMatchers( "/users/isLogged","/users/logged").permitAll()
-				.antMatchers( "/screens/medicine.html","/medicine", "/medicine/findByName/*","/screens/medicine_search.html").permitAll()
+				.antMatchers( "/screens/medicine.html", "/medicine/findByName/*","/screens/medicine_search.html").permitAll()
+				.antMatchers(	HttpMethod.GET, "/medicine").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
@@ -91,7 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// filtra requisições de login
 				.addFilterBefore(new JWTLoginFilter("/loginApi", authenticationManager()),
-						UsernamePasswordAuthenticationFilter.class)
+                        UsernamePasswordAuthenticationFilter.class)
 
 				// filtra outras requisições para verificar a presença do JWT no header
 				.addFilterBefore(new JWTAuthenticationFilter(),

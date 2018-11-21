@@ -123,6 +123,7 @@ public class UserController {
         User user = service.findByUsername(username);
         user.setFirebaseToken(token);
         logger.info(user.toString());
+        System.out.println("----------------->"+user.toString());
         service.save(user);
     }
 }

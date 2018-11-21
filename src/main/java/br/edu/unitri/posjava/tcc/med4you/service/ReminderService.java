@@ -36,6 +36,7 @@ public class ReminderService {
     private UserService userService;
 
     public void save(Reminder reminder) {
+        reminder.setUser(userService.findById(reminder.getUser().getId()));
         repository.save(reminder);
         scheduleNotification(reminder);
     }
@@ -82,7 +83,11 @@ public class ReminderService {
 
         Scheduler scheduler = null;
         try {
-            scheduler = new StdSchedulerFactory().getScheduler();
+            try{
+                scheduler = new StdSchedulerFactory().getScheduler();
+            }catch (SchedulerException e){
+                scheduler = new StdSchedulerFactory().getScheduler("DefaultQuartzScheduler");
+            }
             scheduler.start();
             scheduler.scheduleJob(job, trigger);
         } catch (SchedulerException e) {

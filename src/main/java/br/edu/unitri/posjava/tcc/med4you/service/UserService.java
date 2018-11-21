@@ -108,7 +108,7 @@ public class UserService {
 
     public UserDTO findByResponsableId(Long userId) {
         UserDTO dto = null;
-        User user = repository.findByResponsableId(userId;
+        User user = repository.findByResponsableId(userId);
         if(user!= null){
             dto = user.toDTO();
         }

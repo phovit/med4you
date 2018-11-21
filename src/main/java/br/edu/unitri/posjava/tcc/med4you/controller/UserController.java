@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by edufratari on 18/07/18.
@@ -21,7 +22,7 @@ import java.util.List;
 @RequestMapping("users")
 public class UserController {
 
-    Log4JLogger LOG = new Log4JLogger(this.getClass().getName());
+    Logger logger = Logger.getLogger(this.getClass().getName());
     @Autowired
     private UserService service;
 
@@ -121,7 +122,7 @@ public class UserController {
     public void updateFirebaseToken(@RequestBody String token, @PathVariable("username") String username){
         User user = service.findByUsername(username);
         user.setFirebaseToken(token);
-        LOG.info(user.toString());
+        logger.info(user.toString());
         service.save(user);
     }
 }

@@ -122,8 +122,6 @@ public class UserController {
     public void updateFirebaseToken(@RequestBody String token, @PathVariable("username") String username){
         User user = service.findByUsername(username);
         user.setFirebaseToken(token);
-        logger.info(user.toString());
-        System.out.println("----------------->"+user.toString());
         service.save(user);
     }
 }

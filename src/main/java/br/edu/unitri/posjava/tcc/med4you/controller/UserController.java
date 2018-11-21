@@ -107,4 +107,11 @@ public class UserController {
     public UserDTO getDependente(){
         return service.findByResponsableId(service.findLogged().getId());
     }
+
+    @RequestMapping(value = "/updateFirebaseToken", method = RequestMethod.POST)
+    public void updateFirebaseToken(@RequestBody String token){
+        User user = new User().fromDTO(service.findLogged());
+        user.setFirebaseToken(token);
+        service.save(user);
+    }
 }

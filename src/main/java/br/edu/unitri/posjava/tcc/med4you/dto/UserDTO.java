@@ -20,6 +20,7 @@ public class UserDTO {
     private String email;
     private String cellPhone;
     private String username;
+    private String firebaseToken;
 
     private User responsableUser;
 
@@ -110,5 +111,13 @@ public class UserDTO {
 
     public void setResponsableUser(User responsableUser) {
         this.responsableUser = responsableUser;
+    }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
     }
 }

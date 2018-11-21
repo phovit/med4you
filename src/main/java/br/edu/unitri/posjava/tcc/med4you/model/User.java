@@ -28,6 +28,7 @@ public class User {
     private String username;
     private String password;
     private Long facebookId;
+    private String firebaseToken;
 
     @OneToOne
     private User responsableUser;
@@ -144,6 +145,7 @@ public class User {
         this.setUsername(dto.getUsername());
         this.setPhone(dto.getPhone());
         this.setResponsableUser(dto.getResponsableUser());
+        this.setFirebaseToken( dto.getFirebaseToken() );
         return this;
     }
     public UserDTO toDTO(){
@@ -160,6 +162,7 @@ public class User {
         dto.setUsername(this.getUsername());
         dto.setPhone(this.getPhone());
         dto.setResponsableUser(this.getResponsableUser());
+        dto.setFirebaseToken( this.getFirebaseToken() );
 
         return dto;
     }
@@ -171,5 +174,14 @@ public class User {
 
     public void setFacebookId(Long facebookId) {
         this.facebookId = facebookId;
+    }
+
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
     }
 }

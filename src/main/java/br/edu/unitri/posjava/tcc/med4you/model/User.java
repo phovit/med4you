@@ -184,4 +184,24 @@ public class User {
     public void setFirebaseToken(String firebaseToken) {
         this.firebaseToken = firebaseToken;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", identity='" + identity + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", address=" + address +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", cellPhone='" + cellPhone + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", facebookId=" + facebookId +
+                ", firebaseToken='" + firebaseToken + '\'' +
+                ", responsableUser=" + responsableUser +
+                '}';
+    }
 }

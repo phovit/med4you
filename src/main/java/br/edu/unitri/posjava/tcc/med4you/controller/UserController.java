@@ -3,6 +3,7 @@ package br.edu.unitri.posjava.tcc.med4you.controller;
 import br.edu.unitri.posjava.tcc.med4you.dto.UserDTO;
 import br.edu.unitri.posjava.tcc.med4you.model.User;
 import br.edu.unitri.posjava.tcc.med4you.service.UserService;
+import org.apache.commons.logging.impl.Log4JLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import java.util.List;
 @RequestMapping("users")
 public class UserController {
 
+    Log4JLogger LOG = new Log4JLogger(this.getClass().getName());
     @Autowired
     private UserService service;
 
@@ -119,6 +121,7 @@ public class UserController {
     public void updateFirebaseToken(@RequestBody String token, @PathVariable("username") String username){
         User user = service.findByUsername(username);
         user.setFirebaseToken(token);
+        LOG.info(user.toString());
         service.save(user);
     }
 }

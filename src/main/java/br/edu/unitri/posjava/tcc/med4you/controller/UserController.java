@@ -114,4 +114,11 @@ public class UserController {
         user.setFirebaseToken(token);
         service.save(user);
     }
+
+    @RequestMapping(value = "/updateFirebaseTokenByUsername/{username}", method = RequestMethod.POST)
+    public void updateFirebaseToken(@RequestBody String token, @PathVariable("username") String username){
+        User user = service.findByUsername(username);
+        user.setFirebaseToken(token);
+        service.save(user);
+    }
 }

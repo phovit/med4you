@@ -71,28 +71,42 @@ public class ReminderService {
         map.put("REMINDER", reminder);
 
         JobDetail job = JobBuilder.newJob(ReminderNotificationJob.class)
-                .withIdentity("reminderNotificationJob", "REMINDER")
+                .withIdentity("reminderNotificationJob"+new Date().toString(), "REMINDER")
                 .usingJobData(new JobDataMap(map)).build();
 
         Trigger trigger = TriggerBuilder
                 .newTrigger()
-                .withIdentity("reminderNotificationTrigger", "REMINDER")
+                .withIdentity("reminderNotificationTrigger"+new Date().toString(), "REMINDER")
                 .startAt(reminder.getFirstDose())
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule())
                 .build();
 
         Scheduler scheduler = null;
-        try {
-            try{
-                scheduler = new StdSchedulerFactory().getScheduler();
-            }catch (SchedulerException e){
-                scheduler = new StdSchedulerFactory().getScheduler("DefaultQuartzScheduler");
-            }
+
+            try {
+            scheduler = new StdSchedulerFactory().getScheduler();
             scheduler.start();
             scheduler.scheduleJob(job, trigger);
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
+            } catch (SchedulerException e) {
+                try{
+                scheduler = new StdSchedulerFactory().getScheduler("DefaultQuartzScheduler");
+                scheduler.start();
+                scheduler.scheduleJob(job, trigger);
+                } catch (SchedulerException e2) {
+                    e2.printStackTrace();
+
+                }
+            }
+/*            try{
+                scheduler = new StdSchedulerFactory().getScheduler("DefaultQuartzScheduler");
+                scheduler.start();
+                scheduler.scheduleJob(job, trigger);
+            }catch (Exception e){
+                e.printStackTrace();
+                scheduler = new StdSchedulerFactory().getScheduler();
+                scheduler.start();
+                scheduler.scheduleJob(job, trigger);
+            }*/
 
     }
 

@@ -55,6 +55,10 @@ public class ReminderNotificationJob implements Job {
             request.setEntity(entity);
             HttpResponse response = httpClient.execute(request);
             System.out.println(response.getStatusLine().getStatusCode());
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            System.out.println(request.getAllHeaders());
+            System.out.println(request.getEntity());
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         }catch (Exception e){
             e.printStackTrace();
         }

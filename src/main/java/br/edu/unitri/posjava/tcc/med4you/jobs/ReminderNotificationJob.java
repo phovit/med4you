@@ -44,7 +44,7 @@ public class ReminderNotificationJob implements Job {
 
     private void sendPost(String token, String titulo, String corpo) {
         try {
-            String payload = "data={\"notification\": {\"title\": \"" + titulo + "\",\"body\": \"" + corpo + "\"},\"to\": \"" + token + "\"}";
+            String payload = "{\"notification\": {\"title\": \"" + titulo + "\",\"body\": \"" + corpo + "\"},\"to\": \"" + token + "\"}";
             System.out.println(payload);
             StringEntity entity = new StringEntity(payload, ContentType.APPLICATION_FORM_URLENCODED);
             HttpClient httpClient = HttpClientBuilder.create().build();

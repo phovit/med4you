@@ -18,6 +18,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.http.HttpHeaders;
 
 /**
  * Created by pauloho on 10/09/18.
@@ -48,6 +49,9 @@ public class ReminderNotificationJob implements Job {
             StringEntity entity = new StringEntity(payload, ContentType.APPLICATION_FORM_URLENCODED);
             HttpClient httpClient = HttpClientBuilder.create().build();
             HttpPost request = new HttpPost("https://fcm.googleapis.com/fcm/send");
+            request.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
+            request.setHeader(HttpHeaders.AUTHORIZATION, "key=AAAA_OPkdss:APA91bElihLF3IyPelpXlaFjstj-uTb6l6Z7QMCInTFLNWQo5fusHLh2wYxBflABDKukjNCFxxv-clG4VJyDJdsqMhTeNuWjAnkkKMAmAGyCzKhMq2XMvS9mgv0E75_XpsQwx8SiRXi4uJnZu1O1Po-GX4anYAQXvA");
+
             request.setEntity(entity);
             HttpResponse response = httpClient.execute(request);
             System.out.println(response.getStatusLine().getStatusCode());

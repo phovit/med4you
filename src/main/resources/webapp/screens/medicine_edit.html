@@ -3,25 +3,58 @@
         <h2>Editar Medicamento</h2>
         <form>
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <div class="col-md-12" style="text-align: left"><label for="name">Nome</label></div>
+                        <input id="name" class="form-control" type="text" ng-model="medicine.name"/>
+                    </div>
+                    <div class="form-group row">
 
-                    <div class="col-md-12" style="text-align: left"><label for="name">Nome</label></div>
-                    <input id="name" class="form-control" type="text" ng-model="medicine.name"/>
+                        <div class="col-md-12" style="text-align: left"><label for="codebar">Codigo de barras</label>
+                        </div>
+                        <input id="codebar" class="form-control" type="text" ng-model="medicine.codebar"/>
+                    </div>
+                    <div class="form-group row  ">
+
+                        <div class="col-md-12" style="text-align: left"><label for="msRecord">Registro MS</label></div>
+                        <input id="msRecord" class="form-control" type="text" ng-model="medicine.msRecord"/>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <div style="height: 40px;">
+                        <div class="fileUpload"
+                             style="width: 192px; margin: 0; height: 40px; line-height: 40px; background-color: black; opacity:.6; font-weight: bold; top: 4px;left: 4px;"
+                             ng-hide="!showSelectImageButton" ng-mouseleave="showSelectImageButton = false"
+                             ng-mouseenter="showSelectImageButton = true">
+                            <span style="color: #FFF">Selecionar Imagem</span>
+                            <input type="file"
+                                   ng-model="image"
+                                   class="upload"
+                                   fileinput2="file"
+                                   base-sixty-four-input
+                                   accept="image/*"
+                                   filepreview="filepreview" style="height: 40px; "/>
+                        </div>
+                    </div>
+                    <div id="imageField"
+                         style="width: 200px; height: 200px; margin-top: -40px; border: 4px solid #337ab7; border-radius: 2px;"
+                         ng-mouseenter="showSelectImageButton = true"
+                         ng-mouseleave="showSelectImageButton = false">
 
-                    <div class="col-md-12" style="text-align: left"><label for="codebar">Codigo de barras</label></div>
-                    <input id="codebar" class="form-control" type="text" ng-model="medicine.codebar"/>
+
+                        <!--img ng-if="!!medicine.image" src="{{'data:image/png;base64, '+medicine.image}}"
+                             style="width: inherit; height: auto"-->
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-md-6">
 
-                    <div class="col-md-12" style="text-align: left"><label for="msRecord">Registro MS</label></div>
-                    <input id="msRecord" class="form-control" type="text" ng-model="medicine.msRecord"/>
-                </div>
+
+            <div class="row">
+
                 <div class="form-group col-md-6" style="display: flex; margin-top: 25px">
-                    <div class="col-md-6" style="text-align: left"><label for="generic">Medicamento Genérico</label></div>
+                    <div class="col-md-6" style="text-align: left"><label for="generic">Medicamento Genérico</label>
+                    </div>
                     <input id="generic" type="checkbox" ng-model="medicine.generic" style="margin-left: 20px"/>
                 </div>
             </div>
@@ -38,6 +71,8 @@
                     <textarea id="contraindication" class="form-control" type="text"
                               ng-model="medicine.contraindications"></textarea>
                 </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-md-6">
                     <div class="col-md-12" style="text-align: left"><label for="adverseReactions">Reações
                         adversas</label>
@@ -51,11 +86,12 @@
                               ng-model="medicine.precautions"></textarea>
                 </div>
 
+            </div>
 
-                <div class="form-group col-md-12">
-                    <button class="btn btn-primary" ng-click="save()">Salvar</button>
-                    <button class="btn btn-primary" ng-click="clear()">Limpar</button>
-                </div>
+            <div class="form-group col-md-12">
+                <button class="btn btn-primary" ng-click="save()">Salvar</button>
+                <button class="btn btn-primary" ng-click="clear()">Limpar</button>
+            </div>
         </form>
     </div>
 </div>

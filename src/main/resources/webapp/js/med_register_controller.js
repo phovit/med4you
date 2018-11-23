@@ -26,49 +26,49 @@ app.controller('medicineregistercontroller', function ($scope, $http, $state) {
 
 
 })
-    .service("uploadService", function ($http, $q) {
+.service("uploadService", function ($http, $q) {
 
-        return ({
-            upload: upload
-        });
+    return ({
+        upload: upload
+    });
 
-        function upload(file) {
-            var upl = $http({
-                method: 'POST',
-                url: 'http://jsonplaceholder.typicode.com/posts', // /api/upload
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                data: {
-                    upload: file
-                },
-                transformRequest: function (data, headersGetter) {
-                    var formData = new FormData();
-                    angular.forEach(data, function (value, key) {
-                        formData.append(key, value);
-                    });
+    function upload(file) {
+        var upl = $http({
+            method: 'POST',
+            url: 'http://jsonplaceholder.typicode.com/posts', // /api/upload
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            data: {
+                upload: file
+            },
+            transformRequest: function (data, headersGetter) {
+                var formData = new FormData();
+                angular.forEach(data, function (value, key) {
+                    formData.append(key, value);
+                });
 
-                    var headers = headersGetter();
-                    delete headers['Content-Type'];
+                var headers = headersGetter();
+                delete headers['Content-Type'];
 
-                    return formData;
-                }
-            });
-            return upl.then(handleSuccess, handleError);
-
-        }
-
-        function handleError(response, data) {
-            if (!angular.isObject(response.data) || !response.data.message) {
-                return ($q.reject("An unknown error occurred."));
+                return formData;
             }
+        });
+        return upl.then(handleSuccess, handleError);
 
-            return ($q.reject(response.data.message));
+    }
+
+    function handleError(response, data) {
+        if (!angular.isObject(response.data) || !response.data.message) {
+            return ($q.reject("An unknown error occurred."));
         }
 
-        function handleSuccess(response) {
-            return (response);
-        }
+        return ($q.reject(response.data.message));
+    }
+
+    function handleSuccess(response) {
+        return (response);
+    }
 
     })
     .directive("fileinput", [function () {

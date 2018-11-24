@@ -2,6 +2,7 @@ package br.edu.unitri.posjava.tcc.med4you.service;
 
 import br.edu.unitri.posjava.tcc.med4you.jobs.ReminderNotificationJob;
 import br.edu.unitri.posjava.tcc.med4you.model.Reminder;
+import br.edu.unitri.posjava.tcc.med4you.model.User;
 import br.edu.unitri.posjava.tcc.med4you.repository.ReminderRepository;
 import org.quartz.JobBuilder;
 import org.quartz.JobDataMap;
@@ -37,7 +38,10 @@ public class ReminderService {
 
     public void save(Reminder reminder) {
         logger.info(reminder.toString());
-        reminder.setUser(userService.findById(reminder.getUser().getId()));
+        User user = reminder.getUser();
+        Long id = user.getId();
+        User user_ = userService.findById(id);
+        reminder.setUser(user_);
         repository.save(reminder);
         scheduleNotification(reminder);
     }

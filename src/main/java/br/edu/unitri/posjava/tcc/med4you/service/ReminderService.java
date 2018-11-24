@@ -36,6 +36,7 @@ public class ReminderService {
     private UserService userService;
 
     public void save(Reminder reminder) {
+        logger.info(reminder.toString());
         reminder.setUser(userService.findById(reminder.getUser().getId()));
         repository.save(reminder);
         scheduleNotification(reminder);

@@ -103,4 +103,18 @@ public class Reminder {
     public void setObservation(String observation) {
         this.observation = observation;
     }
+
+    @Override
+    public String toString() {
+        return "Reminder{" +
+                "id=" + id +
+                ", user=" + user +
+                ", medicine=" + medicine +
+                ", dosage='" + dosage + '\'' +
+                ", firstDose=" + firstDose +
+                ", period='" + period + '\'' +
+                ", responsableUser=" + responsableUser +
+                ", observation='" + observation + '\'' +
+                '}';
+    }
 }

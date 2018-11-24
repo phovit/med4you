@@ -50,7 +50,7 @@ public class ReminderNotificationJob implements Job {
             HttpClient httpClient = HttpClientBuilder.create().build();
             HttpPost request = new HttpPost("https://fcm.googleapis.com/fcm/send");
             request.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-            request.setHeader(HttpHeaders.AUTHORIZATION, "key=AAAA_OPkdss:APA91bElihLF3IyPelpXlaFjstj-uTb6l6Z7QMCInTFLNWQo5fusHLh2wYxBflABDKukjNCFxxv-clG4VJyDJdsqMhTeNuWjAnkkKMAmAGyCzKhMq2XMvS9mgv0E75_XpsQwx8SiRXi4uJnZu1O1Po-GX4anYAQXvA");
+            request.setHeader(HttpHeaders.AUTHORIZATION, "key=AAAA_OPkdss:APA91bGCLEbMgDRBiPwJjrUxW9VBE7iDUEWkG6XEabOW4Z4_qxlymMPgw23akbKF_stVktGCxEVDUrNnOZqGgA7W89NkdtrdpYKGs8nloMgip-iAtoBvodbFeGJJ1t_2W8M3698gc7TO");
 
             request.setEntity(entity);
             HttpResponse response = httpClient.execute(request);
